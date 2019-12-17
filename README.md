@@ -24,10 +24,7 @@ Redis
 ```
 
 # Prerequisites
-- [Docker](https://hub.docker.com/search/?type=edition&offering=community)
-
-    | If needed check https://golb.hplar.ch/2019/01/docker-on-windows10-home-scratch.html to install docker for virtual box on Windows Family
-
+- Docker version 17.12.0+ and Compose version 1.21.0+
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 - git
 - a shell 😁
