@@ -1,10 +1,10 @@
 FROM nginx:1.17.6-alpine
 
-# RUN mkdir -p /usr/src/app
+ENV NGINX_PORT 80
+ENV HOSTNAME reverseproxy
 
-# WORKDIR /usr/src/app
 
-# RUN apt update \
+# CMD apt update \
 #     && apt full-upgrade
 
 COPY docker/nginx/conf.d /etc/nginx/conf.d
