@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm i && npx nodemon -L",
-    "start": "node server.js"
+    "start": "node server.js",
+    "compose-up-prod": "docker-compose -f .\\Dockerfiles\\docker-compose.prod.yml up --build --force-recreate",
+    "compose-up-dev": "docker-compose -f .\\Dockerfiles\\docker-compose.dev.yml up --build --force-recreate",
+    "compose-down-prod": "docker-compose -f .\\Dockerfiles\\docker-compose.prod.yml down",
+    "compose-down-dev": "docker-compose -f .\\Dockerfiles\\docker-compose.dev.yml down"
   },
   "repository": {
     "type": "git",
@@ -19,7 +23,9 @@
   },
   "homepage": "https://github.com/YI-B3-Devops/tp2-seixas-julien#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^7.17.0",
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

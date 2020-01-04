@@ -64,3 +64,9 @@ jspm_packages/
 
 # Basic files
 *.md
+
+# Git files
+.git*
+
+# Datas
+postgres-persistant-data/
