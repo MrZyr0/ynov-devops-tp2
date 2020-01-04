@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2019-12-17
+### Changed
+- adapt dev command to be usable on any OS localy
+
 ## [2.0.0] - 2019-12-17
 ### Added
 - Add `start` command in package.json for production launch
