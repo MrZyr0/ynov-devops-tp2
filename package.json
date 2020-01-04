@@ -7,10 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm i && npx nodemon -L",
     "start": "node server.js",
-    "compose-up-prod": "docker-compose -f .\\Dockerfiles\\docker-compose.prod.yml up --build --force-recreate",
-    "compose-up-dev": "docker-compose -f .\\Dockerfiles\\docker-compose.dev.yml up --build --force-recreate",
-    "compose-down-prod": "docker-compose -f .\\Dockerfiles\\docker-compose.prod.yml down",
-    "compose-down-dev": "docker-compose -f .\\Dockerfiles\\docker-compose.dev.yml down"
+    "compose-up-prod": "docker-compose -f ./Dockerfiles/docker-compose.prod.yml up --build --force-recreate",
+    "compose-up-dev": "docker-compose -f ./Dockerfiles/docker-compose.dev.yml up --build --force-recreate",
+    "compose-down-prod": "docker-compose -f ./Dockerfiles/docker-compose.prod.yml down",
+    "compose-down-dev": "docker-compose -f ./Dockerfiles/docker-compose.dev.yml down"
   },
   "repository": {
     "type": "git",
