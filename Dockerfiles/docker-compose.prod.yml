@@ -34,33 +34,34 @@ services:
       - DB_USER=admin
       - DB_PASSWORD=admin
       - REDIS_HOST=redis  # Container name
+    restart: on-failure
     networks:
       - network-db
       - network-nodejs
+    
+  postgres:
+    image: postgres:alpine
+    depends_on:
+      - redis
+    container_name: postgres
+    hostname: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: mainBDD
+      PGDATA: /data/postgres
+    restart: on-failure
+    volumes:
+      - ../postgres-persistant-data:/data/postgres
+    networks:
+      - network-db
 
-    postgres:
-      image: postgres:alpine
-      depends_on:
-        - redis
-      container_name: postgres
-      hostname: postgres
-      environment:
-        POSTGRES_USER: admin
-        POSTGRES_PASSWORD: admin
-        POSTGRES_DB: mainBDD
-        PGDATA: /data/postgres
-      restart: on-failure
-      volumes:
-        - ../postgres-persistant-data:/data/postgres
-      networks:
-        - network-db
-  
-    redis:
-      image: redis:alpine3.11
-      container_name: redis
-      restart: on-failure
-      networks:
-        - network-db
+  redis:
+    image: redis:alpine3.11
+    container_name: redis
+    restart: on-failure
+    networks:
+      - network-db
 
 networks:
   network-db:
