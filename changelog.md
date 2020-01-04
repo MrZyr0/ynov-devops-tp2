@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [3.0.0] - 2020-01-03
+### Changed
+- Fix docker-compose.prod indent problem
+
+
+## [3.0.0] - 2020-01-03
 ### Added
 - Add git files & postgres-persistent-data folder to dockerignore
 - Add postgres-persistent-data folder to gitignore
