@@ -1,0 +1,68 @@
+# DEVELOPPEMENT
+version: '3.1'
+
+services:
+  reverseproxy:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - nodeapi
+    container_name: reverseproxy
+    hostname: reverseproxy
+    networks:
+      - network-nodejs
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+    restart: on-failure
+    ports:
+      - 3000:80 # HOST:CLIENT
+  
+  nodeapi:
+    build:
+      context: ../
+      dockerfile: Dockerfiles/node-api/Dockerfile.dev
+    depends_on:
+      - postgres
+      - redis
+    container_name: nodeapi
+    hostname: nodeapi
+    environment:
+      - NODE_ENV=development
+      - API_PORT=3030
+      - DB_USER=admin
+      - DB_PASSWORD=azertyuiop01
+      - DB_NAME=test
+      - DB_HOST=devops_tp_postgres
+    volumes:
+      - ../:/home/node/app
+    restart: on-failure
+    networks:
+      - network-db
+      - network-nodejs
+
+  postgres:
+    image: postgres:alpine
+    depends_on:
+      - redis
+    container_name: postgres
+    hostname: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: azertyuiop01
+      POSTGRES_DB: test
+      PGDATA: /data/postgres
+    restart: on-failure
+    networks:
+      - network-db
+
+  redis:
+    image: redis:alpine3.11
+    container_name: redis
+    restart: on-failure
+    networks:
+      - network-db
+
+networks:
+  network-db:
+  network-nodejs:

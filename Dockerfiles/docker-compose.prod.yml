@@ -1,18 +1,27 @@
-version: '3'
+# PRODUCTION
+version: '3.1'
 
 services:
   reverseproxy:
-    container_name: reverseproxy
-    hostname: reverseproxy
     build:
-      context: ./
-      dockerfile: docker/nginx/Dockerfile
-    ports:
-      - 3000:80 # HOST:CLIENT
+      context: ./nginx
+      dockerfile: Dockerfile.prod
     depends_on:
       - nodeapi
+    container_name: reverseproxy
+    hostname: reverseproxy
+    networks:
+      - network-nodejs
+    ports:
+      - 3000:80 # HOST:CLIENT
   
   nodeapi:
+    build:
+      context: ../
+      dockerfile: Dockerfiles/node-api/Dockerfile.prod
+    depends_on:
+      - postgres
+      - redis
     container_name: nodeapi
     hostname: nodeapi
     environment:
@@ -21,24 +30,30 @@ services:
       - DB_PASSWORD=azertyuiop01
       - DB_NAME=test
       - DB_HOST=devops_tp_postgres
-    build:
-      context: ./
-      dockerfile: docker/node-api/Dockerfile
-    depends_on:
-      - postgres
-      - redis
+    networks:
+      - network-db
+      - network-nodejs
 
   postgres:
+    image: postgres:alpine
+    depends_on:
+      - redis
     container_name: postgres
     hostname: postgres
-    image: postgres:alpine
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: azertyuiop01
       POSTGRES_DB: test
       PGDATA: /data/postgres
+    networks:
+      - network-db
 
   redis:
-    # TODO: Pass to alpine version
+    image: redis:alpine3.11
     container_name: redis
-    image: redis:latest
+    networks:
+      - network-db
+
+networks:
+  network-db:
+  network-nodejs:

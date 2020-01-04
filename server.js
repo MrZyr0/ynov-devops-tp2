@@ -2,9 +2,17 @@
 
 const Express = require('express');
 const WebServer = Express();
-const PORT = process.env.API_PORT || 3000;
+const PORT = process.env.API_PORT || 3030;
 
-WebServer.listen(PORT);
+
+WebServer.listen(PORT, (error) => {
+    if(error) {
+        throw error;
+    }
+
+    console.log('## API STARTED !')
+    console.log(`## Express server listening on port ${PORT}`);
+});
 
 WebServer.get('/', function (req, res)
 {
@@ -19,10 +27,4 @@ WebServer.get('/status', function (req, res)
         "postgresUptime": String,
         "redisConnectedClients": Number
         });
-});
-
-
-WebServer.get('/api', function (req, res)
-{
-    res.json({ message: "Hello NGINX !" });
 });

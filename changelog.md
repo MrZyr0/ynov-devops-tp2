@@ -6,6 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2019-12-17
+### Added
+- Add `start` command in package.json for production launch
+- Add `dev` command in package.json for developpement launch
+- Add Start API message in console
+- Add nodemon support
+- Add location to nginx config
+- Add node ENV to development
+- Create Production & Development Dockerfile for nodeapi
+- Create Production & Development docker-compose file
+
+### Changed
+- Reorganization of the project (rename, mv etc...)
+- Complete dockerignore for COPY function in Dockerfile
+- Change package description
+- Change express default port for env var in server.js
+- Change nginx configuration according to new nodeapi port (3030)
+- Change all docker images to alpine version
 
 ## [1.0.0] - 2019-12-17
 ### Added

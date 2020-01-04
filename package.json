@@ -1,10 +1,12 @@
 {
   "name": "tp2-seixas-julien",
   "version": "1.0.0",
-  "description": "## Info mail: julien.seixas@ynov.com",
-  "main": "index.js",
+  "description": "My first docker network",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm i && ./node_modules/.bin/nodemon -L",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,8 @@
   "homepage": "https://github.com/YI-B3-Devops/tp2-seixas-julien#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }

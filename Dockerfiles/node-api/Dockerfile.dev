@@ -1,0 +1,16 @@
+FROM node:lts-alpine
+
+ENV NODE_ENV development
+ENV API_PORT 3000
+ENV DB_USER postgres
+ENV DB_PASSWORD postgres
+ENV DB_NAME postgres
+ENV DB_HOST postgres
+
+# Create app directory
+WORKDIR /home/node/app
+RUN chown -R node:node /home/node/app
+USER node
+
+# Commands at runtime
+CMD [ "npm", "run", "dev" ]
