@@ -9,25 +9,22 @@ professor : [@aegirops](https://github.com/aegirops)
 ### Libraires & Programs installed
 
 #### Host
-
 Only docker
 
 #### Containers
-
 To run the projet, there is multiples container who run these services:
-
 ```
-nodejs@12
+nodejs
 nginx
 postgreSQL
 Redis
 ```
 
-# Prerequisites
+# Prerequisites of the host
 - Docker version 17.12.0+ and Compose version 1.21.0+
-- [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 - git
 - a shell 😁
+- (npm) - _optional_
 
 # Installation / How to start
 
@@ -35,30 +32,26 @@ Redis
 2. Moving to the root of the project
 3. Compose the project :
 
-   ### Using npm
+    ### Using npm
+    `npm compose-up-(prod | dev)`
+    ### Using manual `docker-compose` command
 
-   `npm compose-up-(prod | dev)`
-
-   ### Using manual `docker-compose` command
-
-   - **For production** : `docker-compose -f ./Dockerfiles/docker-compose.prod.yml up --build --force-recreate`
-   - **For developmnet** : `docker-compose -f ./Dockerfiles/docker-compose.dev.yml up --build --force-recreate`
-
+    - **For production** : `docker-compose -f ./Dockerfiles/docker-compose.prod.yml up --build --force-recreate`
+    - **For developmnet** : `docker-compose -f ./Dockerfiles/docker-compose.dev.yml up --build --force-recreate`
 4. Your done ! The environment is up and running.
 
 # Usage
-
 The objective of this project is to have a development environment identical to the production one, simple and quick to deploy for a nodeJS API.
 
-#### SSH Access
+From any machine with docker installed you can run the pre-configured environment.
 
 Once the environment is launched you just have to access the API available at http://localhost:3000/api.
 
 List of preconfigured URLs:
+- http://localhost:3000               => nginx default page
+- http://localhost:3000/api           =>  `Hello World` API message
+- http://localhost:3000/api/status    =>  API data
 
-- http://localhost:3000 => nginx default page
-- http://localhost:3000/api => `Hello World` API message
-- http://localhost:3000/api/status => API data
 
 Launched in development mode, the project folder is bind with nodeapi container and `Dockerfiles/nginx/conf.d` folder is bind with nginx's configuration folder (`/etc/nginx/conf.d`).
 In develpment mode, all is setup to speed up your productivity.
@@ -82,10 +75,10 @@ Edit are create files in `Dockerfiles/nginx/conf.d` and restart the container **
 2. Use `compose-down-(prod | dev)` to remove containers
 3. You can use `docker ps -a` and `docker rmi IMG_ID` to remove containers images from your computer
 
+
 # TIPS
-
 ## Exec command in container
-
 If when you develop the API you need to install some dependencies, you can run commands easily on the container using `docker exec -it {CONTAINER_ID} {COMMAND}`.
 
+For example, instead of completly restart reverseproxy container, you can execute `nginx -t && nginx -s reload` to test and reload nginx configuration.
 For example, instead of completly restart reverseproxy container, you can execute `nginx -t && nginx -s reload` to test and reload nginx configuration.

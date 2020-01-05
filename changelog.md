@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.3.0] - 2020-01-03
+### Added
+- Update README
+
+
+## [3.2.0] - 2020-01-03
+### Added
+- Add `docker-clean` command. Please read the README.md to know what it did
+
+
 ## [3.1.0] - 2020-01-03
 ### Changed
 - Fix docker-compose.prod indent problem
